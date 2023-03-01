@@ -11,11 +11,11 @@ public class MainTestArrayStorage {
 
     public static void main(String[] args) {
         Resume resume1 = new Resume();
-        resume1.uuid = "uuid1";
+        resume1.setUuid("uuid1");
         Resume resume2 = new Resume();
-        resume2.uuid = "uuid2";
+        resume2.setUuid("uuid2");
         Resume resume3 = new Resume();
-        resume3.uuid = "uuid3";
+        resume3.setUuid("uuid3");
 
         ARRAY_STORAGE.save(resume1);
         ARRAY_STORAGE.save(resume2);
@@ -23,7 +23,7 @@ public class MainTestArrayStorage {
 
         System.out.println(ARRAY_STORAGE.size());
         printAll();
-        resume1.uuid = "uuid56";
+        resume1.setUuid("uuid56");
         ARRAY_STORAGE.update(resume1);
 
         printAll();

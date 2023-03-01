@@ -19,7 +19,7 @@ public class ArrayStorage {
     public void update(Resume resume) {
         if (isResumeExist(resume)) {
             for (int i = 0; i < countResume; i++) {
-                if (resume.uuid.equals(getAll()[i].uuid)) {
+                if (resume.getUuid().equals(getAll()[i].getUuid())) {
                     getAll()[i] = resume;
                     System.out.println("Резюме " + getAll()[i] + " обновлено");
                     return;
@@ -46,8 +46,8 @@ public class ArrayStorage {
     public Resume get(String uuid) {
         if (isResumeExist(uuid)) {
             for (int i = 0; i < countResume; i++) {
-                if (uuid.equals(storage[i].uuid)) {
-                    System.out.println("Резюме " + storage[i].uuid + " найдено");
+                if (uuid.equals(storage[i].getUuid())) {
+                    System.out.println("Резюме " + storage[i].getUuid() + " найдено");
                     return storage[i];
                 }
             }
@@ -59,7 +59,7 @@ public class ArrayStorage {
     public void delete(String uuid) {
         if (isResumeExist(uuid)) {
             for (int i = 0; i < countResume; i++) {
-                if (uuid.equals(storage[i].uuid)) {
+                if (uuid.equals(storage[i].getUuid())) {
                     storage[i] = storage[countResume - 1];
                     storage[countResume - 1] = null;
                     countResume--;
@@ -84,7 +84,7 @@ public class ArrayStorage {
 
     private boolean isResumeExist(Resume resume) {
         for (int i = 0; i < countResume; i++) {
-            if (getAll()[i].uuid.equals(resume.uuid)) {
+            if (getAll()[i].getUuid().equals(resume.getUuid())) {
                 return true;
             }
         }
@@ -93,7 +93,7 @@ public class ArrayStorage {
 
     private boolean isResumeExist(String uuid) {
         for (int i = 0; i < countResume; i++) {
-            if (uuid.equals(getAll()[i].uuid)) {
+            if (uuid.equals(getAll()[i].getUuid())) {
                 return true;
             }
         }
