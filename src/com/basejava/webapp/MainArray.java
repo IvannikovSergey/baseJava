@@ -40,10 +40,10 @@ public class MainArray {
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
-                case "delete":
-                    ARRAY_STORAGE.delete("uuid1");
-                    printAll();
-                    break;
+//                case "delete":
+//                    ARRAY_STORAGE.delete("uuid1");
+//                    printAll();
+//                    break;
                 case "get":
                     System.out.println(ARRAY_STORAGE.get("uuid1"));
                     break;
