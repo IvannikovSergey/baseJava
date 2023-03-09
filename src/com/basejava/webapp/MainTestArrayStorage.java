@@ -2,28 +2,33 @@ package com.basejava.webapp;
 
 import com.basejava.webapp.model.Resume;
 import com.basejava.webapp.storage.ArrayStorage;
+import com.basejava.webapp.storage.Storage;
 
 /**
  * Test for your ArrayStorage implementation
  */
 public class MainTestArrayStorage {
-    static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    static final Storage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) {
         Resume resume1 = new Resume();
         resume1.setUuid("uuid1");
-        Resume resume2 = new Resume();
-        resume2.setUuid("uuid2");
-        Resume resume3 = new Resume();
-        resume3.setUuid("uuid3");
         Resume resume4 = new Resume();
         resume4.setUuid("uuid4");
+        Resume resume3 = new Resume();
+        resume3.setUuid("uuid3");
+        Resume resume2 = new Resume();
+        resume2.setUuid("uuid2");
+
+
 
         ARRAY_STORAGE.save(resume1);
-        ARRAY_STORAGE.save(resume2);
+        ARRAY_STORAGE.save(resume4);
         ARRAY_STORAGE.save(resume3);
-        ARRAY_STORAGE.save(resume4);
-        ARRAY_STORAGE.save(resume4);
+        ARRAY_STORAGE.save(resume2);
+        printAll();
+
+        System.out.println(ARRAY_STORAGE.get("uuid3"));
 
         System.out.println(ARRAY_STORAGE.size());
         printAll();
