@@ -2,6 +2,7 @@ package com.basejava.webapp;
 
 import com.basejava.webapp.model.Resume;
 import com.basejava.webapp.storage.ArrayStorage;
+import com.basejava.webapp.storage.SortedArrayStorage;
 import com.basejava.webapp.storage.Storage;
 
 /**
@@ -32,23 +33,23 @@ public class MainTestArrayStorage {
 
         System.out.println(ARRAY_STORAGE.size());
         printAll();
+
         resume1.setUuid("uuid5");
-        ARRAY_STORAGE.update(resume1);
-//
+        ARRAY_STORAGE.update(resume1);//
         printAll();
+
         System.out.println("Get r1: " + ARRAY_STORAGE.get("uuid2"));
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
-
         printAll();
+
         ARRAY_STORAGE.delete("uuid4");
         printAll();
+
         ARRAY_STORAGE.clear();
         System.out.println("Size: " + ARRAY_STORAGE.size());
         printAll();
-
-        System.out.println("Size: " + ARRAY_STORAGE.size());
     }
 
     static void printAll() {

@@ -6,52 +6,19 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
-    private int index;
-
     @Override
-    public void clear() {
-        Arrays.fill(storage, 0, countResume, null);
-        countResume = 0;
+    protected void insertElement(Resume resume, int index) {
+        int insIndex = -index - 1;
+        System.arraycopy(storage, insIndex, storage, insIndex + 1, countResume - insIndex);
+        storage[insIndex] = resume;
     }
 
     @Override
-    public void update(Resume resume) {
-        index = getIndex(resume.getUuid());
+    protected void deleteElement(int index) {
         if (index != -1) {
-            storage[index] = resume;
-            System.out.println("Резюме " + resume + " обновлено");
-            return;
+            int remainingElements = countResume - (index + 1);
+            System.arraycopy(storage, index + 1, storage, index, remainingElements);
         }
-        System.out.println("ERROR обновления");
-    }
-
-    @Override
-    public void save(Resume resume) {
-        index = Arrays.binarySearch(storage, 0, countResume, resume);
-        if (index < 0) {
-            index = -index - 1;
-        }
-        System.arraycopy(storage, index, storage, index + 1, countResume - index);
-        storage[index] = resume;
-        countResume++;
-    }
-
-    @Override
-    public void delete(String uuid) {
-        index = getIndex(uuid);
-        if (index != -1) {
-            storage[index] = storage[countResume - 1];
-            storage[countResume - 1] = null;
-            countResume--;
-            System.out.println("Резюме удалено");
-            return;
-        }
-        System.out.println("ERROR удаления");
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, countResume);
     }
 
     @Override
