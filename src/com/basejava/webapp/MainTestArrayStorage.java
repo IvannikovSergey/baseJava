@@ -2,7 +2,6 @@ package com.basejava.webapp;
 
 import com.basejava.webapp.model.Resume;
 import com.basejava.webapp.storage.ArrayStorage;
-import com.basejava.webapp.storage.SortedArrayStorage;
 import com.basejava.webapp.storage.Storage;
 
 /**
@@ -12,14 +11,10 @@ public class MainTestArrayStorage {
     static final Storage ARRAY_STORAGE = new ArrayStorage();
 
     public static void main(String[] args) {
-        Resume resume1 = new Resume();
-        resume1.setUuid("uuid1");
-        Resume resume4 = new Resume();
-        resume4.setUuid("uuid4");
-        Resume resume3 = new Resume();
-        resume3.setUuid("uuid3");
-        Resume resume2 = new Resume();
-        resume2.setUuid("uuid2");
+        Resume resume1 = new Resume("uuid1");
+        Resume resume4 = new Resume("uuid4");
+        Resume resume3 = new Resume("uuid3");
+        Resume resume2 = new Resume("uuid2");
 
 
 
@@ -32,10 +27,6 @@ public class MainTestArrayStorage {
         System.out.println(ARRAY_STORAGE.get("uuid3"));
 
         System.out.println(ARRAY_STORAGE.size());
-        printAll();
-
-        resume1.setUuid("uuid5");
-        ARRAY_STORAGE.update(resume1);//
         printAll();
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get("uuid2"));
