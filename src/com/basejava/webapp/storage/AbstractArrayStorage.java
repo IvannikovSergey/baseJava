@@ -11,39 +11,39 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected int countResume;
 
     @Override
-    public final void updateAbstr(Resume resume, int index) {
-        storage[index] = resume;
+    public final void doUpdate(Resume resume, Object index) {
+        storage[(int) index] = resume;
         System.out.println("Резюме " + resume + " обновлено");
     }
 
     @Override
-    public final void saveAbstr(Resume resume, int index) {
+    public final void doSave(Resume resume, Object index) {
         if (countResume == STORAGE_LIMIT) {
             throw new StorageException("Хранилище полное", resume.getUuid());
         } else {
-            insertElement(resume, index);
+            insertElement(resume, (Integer) index);
             countResume++;
             System.out.println("Резюме " + resume + " добавлено");
         }
     }
 
     @Override
-    public final Resume getAbstr(int index) {
-        System.out.println("Резюме " + storage[index] + " найдено");
-        return storage[index];
+    public final Resume doGet(Object index) {
+        System.out.println("Резюме " + storage[(int) index] + " найдено");
+        return storage[(int) index];
     }
 
     @Override
-    public final void deleteAbstr(int index) {
-        deleteElement(index);
+    public final void doDelete(Object index) {
+        deleteElement((Integer) index);
         storage[countResume - 1] = null;
         countResume--;
         System.out.println("Резюме удалено");
     }
 
     @Override
-    protected boolean isIndexExist(int index) {
-        return index >= 0;
+    protected boolean isExist(Object index) {
+        return (Integer)index >= 0;
     }
 
     public Resume[] getAll() {

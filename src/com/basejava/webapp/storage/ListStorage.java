@@ -9,31 +9,33 @@ public class ListStorage extends AbstractStorage {
     protected final List<Resume> list = new ArrayList<>();
 
     @Override
-    public void updateAbstr(Resume resume, int index) {
-        list.set(index, resume);
+    public void doUpdate(Resume resume, Object index) {
+        list.set((Integer) index, resume);
         System.out.println("Резюме обновлено " + resume.getUuid());
     }
 
     @Override
-    public void saveAbstr(Resume resume, int index) {
+    public void doSave(Resume resume, Object index) {
         list.add(resume);
         System.out.println("Резюме добавлено " + resume.getUuid());
     }
 
     @Override
-    protected Resume getAbstr(int index) {
-        return list.get(index);
+    protected Resume doGet(Object index) {
+        return list.get((Integer) index);
     }
 
     @Override
-    public void deleteAbstr(int index) {
-        list.remove(index);
+    public void doDelete(Object index) {
+        list.remove(((Integer) index).intValue());
+        System.out.println("Резюме удалено");
     }
 
     @Override
     public Resume[] getAll() {
         Resume[] resumes = new Resume[list.size()];
         return list.toArray(resumes);
+
     }
 
     @Override
@@ -48,7 +50,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected int getIndex(String uuid) {
+    protected Object getSearchKey(String uuid) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUuid().equals(uuid)) {
                 return i;
@@ -58,7 +60,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isIndexExist(int index) {
-        return index >= 0;
+    protected boolean isExist(Object index) {
+        return (Integer)index >= 0;
     }
 }
