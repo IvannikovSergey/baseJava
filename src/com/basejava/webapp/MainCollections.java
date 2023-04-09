@@ -3,13 +3,10 @@ package com.basejava.webapp;
 import com.basejava.webapp.model.Resume;
 import com.basejava.webapp.storage.Storage;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 public class MainCollections {
-    private final String UUID_NOT_EXIST = "dummy";
+    private static final String UUID_NOT_EXIST = "dummy";
     private static final String UUID_1 = "uuid1";
     private static final Resume resume1 = new Resume(UUID_1);
     private static final String UUID_2 = "uuid2";
@@ -25,9 +22,9 @@ public class MainCollections {
         collection.add(resume2);
         collection.add(resume3);
 
-        for(Resume resume: collection) {
+        for (Resume resume : collection) {
             System.out.println(resume);
-            if(Objects.equals(resume.getUuid(), UUID_1)) {
+            if (Objects.equals(resume.getUuid(), UUID_1)) {
 //                collection.remove(resume);
             }
         }
@@ -37,10 +34,14 @@ public class MainCollections {
         Iterator<Resume> iterator = collection.iterator();
         while (iterator.hasNext()) {
             Resume resume = iterator.next();
-            if(Objects.equals(resume.getUuid(), UUID_1)) {
+            if (Objects.equals(resume.getUuid(), UUID_1)) {
                 iterator.remove();
             }
         }
         System.out.println(collection);
+
+        List<Resume> resumes = Arrays.asList(resume1, resume2, resume3);
+        resumes.remove(1);
+        System.out.println(resumes);
     }
 }

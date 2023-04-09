@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public abstract class AbstractArrayStorageTest extends AbstractStorageTest{
-
     protected AbstractArrayStorageTest(Storage storage) {
         super(storage);
     }
@@ -17,11 +16,11 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest{
         try {
             for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
                 System.out.println(i);
-                storage.save(new Resume());
+                storage.save(new Resume("name_1"));
             }
         } catch (StorageException ex) {
             Assertions.fail("Переполнение раньше времени");
         }
-        storage.save(new Resume());
+        storage.save(new Resume("name_2"));
     }
 }
