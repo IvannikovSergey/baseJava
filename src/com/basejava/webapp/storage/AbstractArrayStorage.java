@@ -7,49 +7,45 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
     protected static final int STORAGE_LIMIT = 10000;
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int countResume;
 
     @Override
-    public final void doUpdate(Resume resume, Object index) {
-        storage[(int) index] = resume;
-        System.out.println("Резюме " + resume + " обновлено");
+    public final void doUpdate(Resume resume, Integer index) {
+        storage[index] = resume;
     }
 
     @Override
-    public final void doSave(Resume resume, Object index) {
+    public final void doSave(Resume resume, Integer index) {
         if (countResume == STORAGE_LIMIT) {
             throw new StorageException("Хранилище полное", resume.getUuid());
         } else {
-            insertElement(resume, (Integer) index);
+            insertElement(resume, index);
             countResume++;
-            System.out.println("Резюме " + resume + " добавлено");
         }
     }
 
     @Override
-    public final Resume doGet(Object index) {
-        System.out.println("Резюме " + storage[(int) index] + " найдено");
-        return storage[(int) index];
+    public final Resume doGet(Integer index) {
+        return storage[index];
     }
 
     @Override
-    public final void doDelete(Object index) {
-        deleteElement((Integer) index);
+    public final void doDelete(Integer index) {
+        deleteElement(index);
         storage[countResume - 1] = null;
         countResume--;
-        System.out.println("Резюме удалено");
     }
 
     @Override
-    protected boolean isExist(Object index) {
-        return (Integer)index >= 0;
+    protected boolean isExist(Integer index) {
+        return index >= 0;
     }
 
-    public List<Resume> getAllSorted() {
-        return List.of(Arrays.copyOfRange(storage, 0, size()));
+    public List<Resume> doGetAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size()));
     }
 
     public int size() {
@@ -59,7 +55,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     public void clear() {
         Arrays.fill(storage, 0, countResume, null);
         countResume = 0;
-        System.out.println("Хранилище очищено");
     }
 
     protected abstract void insertElement(Resume resume, int index);

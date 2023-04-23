@@ -4,31 +4,28 @@ import com.basejava.webapp.model.Resume;
 
 import java.util.*;
 
-public class MapUuidStorage extends AbstractStorage {
+public class MapUuidStorage extends AbstractStorage<String> {
 
     protected final Map<String, Resume> map = new HashMap<>();
 
     @Override
-    protected void doUpdate(Resume resume, Object uuid) {
+    protected void doUpdate(Resume resume, String uuid) {
         map.put((String) uuid, resume);
-        System.out.println("Резюме " + uuid + " обновлено");
     }
 
     @Override
-    protected void doSave(Resume resume, Object uuid) {
+    protected void doSave(Resume resume, String uuid) {
         map.put((String) uuid, resume);
-        System.out.println("Резюме добавлено " + resume.getUuid());
     }
 
     @Override
-    protected Resume doGet(Object uuid) {
+    protected Resume doGet(String uuid) {
         return map.get(uuid);
     }
 
     @Override
-    protected void doDelete(Object uuid) {
+    protected void doDelete(String uuid) {
         map.remove(uuid);
-        System.out.println("Резюме " + uuid + " удалено");
     }
 
     @Override
@@ -37,7 +34,7 @@ public class MapUuidStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object uuid) {
+    protected boolean isExist(String uuid) {
         return map.containsKey(uuid);
     }
 
@@ -48,12 +45,8 @@ public class MapUuidStorage extends AbstractStorage {
     }
 
     @Override
-    public List<Resume> getAllSorted() {
-        ArrayList<Resume> list = new ArrayList<>(map.values());
-        System.out.println(list);
-        Collections.sort(list);
-        System.out.println(list);
-        return list;
+    public List<Resume> doGetAll() {
+        return new ArrayList<>(map.values());
 
     }
 

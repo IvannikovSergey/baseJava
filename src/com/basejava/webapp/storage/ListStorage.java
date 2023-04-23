@@ -5,36 +5,32 @@ import com.basejava.webapp.model.Resume;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListStorage extends AbstractStorage {
+public class ListStorage extends AbstractStorage<Integer> {
     protected final List<Resume> list = new ArrayList<>();
 
     @Override
-    public void doUpdate(Resume resume, Object index) {
-        list.set((Integer) index, resume);
-        System.out.println("Резюме обновлено " + resume.getUuid());
+    public void doUpdate(Resume resume, Integer index) {
+        list.set(index, resume);
     }
 
     @Override
-    public void doSave(Resume resume, Object index) {
+    public void doSave(Resume resume, Integer index) {
         list.add(resume);
-        System.out.println("Резюме добавлено " + resume.getUuid());
     }
 
     @Override
-    protected Resume doGet(Object index) {
-        return list.get((Integer) index);
+    protected Resume doGet(Integer index) {
+        return list.get(index);
     }
 
     @Override
-    public void doDelete(Object index) {
-        list.remove(((Integer) index).intValue());
-        System.out.println("Резюме удалено");
+    public void doDelete(Integer index) {
+        list.remove((index).intValue());
     }
 
     @Override
-    public List<Resume> getAllSorted() {
+    public List<Resume> doGetAll() {
         return new ArrayList<>(list);
-
     }
 
     @Override
@@ -49,7 +45,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
+    protected Integer getSearchKey(String uuid) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUuid().equals(uuid)) {
                 return i;
@@ -59,7 +55,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object index) {
-        return (Integer)index >= 0;
+    protected boolean isExist(Integer index) {
+        return index >= 0;
     }
 }

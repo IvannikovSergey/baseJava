@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -89,12 +90,13 @@ public abstract class AbstractStorageTest {
     @Test
     public void getAll() {
         List<Resume> actual = storage.getAllSorted();
-        List<Resume> expected = new ArrayList<>();
-        expected.add(resume1);
-        expected.add(resume2);
-        expected.add(resume3);
+//        List<Resume> expected = new ArrayList<>();
+//        expected.add(resume1);
+//        expected.add(resume2);
+//        expected.add(resume3);
         assertEquals(3, actual.size());
-        assertArrayEquals(List.of(expected).toArray(), List.of(actual).toArray());
+        assertEquals(actual, Arrays.asList(resume1, resume2, resume3));
+//        assertArrayEquals(List.of(expected).toArray(), List.of(actual).toArray());
     }
 
     @Test
