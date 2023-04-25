@@ -1,0 +1,245 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.basejava.webapp.model.Resume",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1720852365 { 
+   	label=basejava
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1703537704 { 
+   	label=webapp
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AbstractArrayStorage803040952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AbstractArrayStorage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   countResume: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   storage: Resume[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" ># deleteElement(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doDelete(index: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doGet(index: Object): Resume</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doSave(resume: Resume, index: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doUpdate(resume: Resume, index: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># insertElement(resume: Resume, index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" ># isExist(index: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+AbstractStorage803040952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AbstractStorage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ delete(uuid: String)</TD></TR>
+<TR><TD ALIGN="LEFT" ># doDelete(searchKey: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># doGet(searchKey: Object): Resume</TD></TR>
+<TR><TD ALIGN="LEFT" ># doSave(resume: Resume, searchKey: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># doUpdate(resume: Resume, searchKey: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(uuid: String): Resume</TD></TR>
+<TR><TD ALIGN="LEFT" >- getExistIndex(uuid: String): Object</TD></TR>
+<TR><TD ALIGN="LEFT" >- getNotExistIndex(uuid: String): Object</TD></TR>
+<TR><TD ALIGN="LEFT" ># getSearchKey(uuid: String): Object</TD></TR>
+<TR><TD ALIGN="LEFT" ># isExist(searchKey: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ save(resume: Resume)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update(resume: Resume)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ArrayStorage803040952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ArrayStorage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># deleteElement(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" ># getSearchKey(uuid: String): Object</TD></TR>
+<TR><TD ALIGN="LEFT" ># insertElement(resume: Resume, index: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ListStorage803040952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ListStorage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   list: List&lt;Resume&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doDelete(index: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># doGet(index: Object): Resume</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doSave(resume: Resume, index: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ doUpdate(resume: Resume, index: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># getSearchKey(uuid: String): Object</TD></TR>
+<TR><TD ALIGN="LEFT" ># isExist(index: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MapStorage803040952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MapStorage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   map: Map&lt;String, Resume&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" ># doDelete(uuid: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># doGet(uuid: Object): Resume</TD></TR>
+<TR><TD ALIGN="LEFT" ># doSave(resume: Resume, uuid: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># doUpdate(resume: Resume, uuid: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" ># getSearchKey(uuid: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" ># isExist(uuid: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Resume1486199094[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Resume</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   fullName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   uuid: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(o: Resume): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SortedArrayStorage803040952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SortedArrayStorage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># deleteElement(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" ># getSearchKey(uuid: String): Object</TD></TR>
+<TR><TD ALIGN="LEFT" ># insertElement(resume: Resume, index: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+AbstractArrayStorage803040952 -> ArrayStorage803040952[arrowhead=none, arrowtail=empty, dir=both];
+AbstractArrayStorage803040952 -> Resume1486199094[label="storage
+[0..*]"];
+AbstractArrayStorage803040952 -> SortedArrayStorage803040952[arrowhead=none, arrowtail=empty, dir=both];
+AbstractStorage803040952 -> AbstractArrayStorage803040952[arrowhead=none, arrowtail=empty, dir=both];
+AbstractStorage803040952 -> ListStorage803040952[arrowhead=none, arrowtail=empty, dir=both];
+AbstractStorage803040952 -> MapStorage803040952[arrowhead=none, arrowtail=empty, dir=both];
+ListStorage803040952 -> Resume1486199094[label="list
+[0..*]"];
+MapStorage803040952 -> Resume1486199094[label="map
+[0..*]"];
+    
+}
+@enduml
