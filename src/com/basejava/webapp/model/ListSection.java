@@ -1,5 +1,6 @@
 package com.basejava.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,10 @@ public class ListSection extends Section{
 
     public ListSection(List<String> items) {
         this.items = items;
+    }
+
+    public ListSection(String... items) {
+        this(Arrays.asList(items));
     }
 
     public List<String> getItems() {

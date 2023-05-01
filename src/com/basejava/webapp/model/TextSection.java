@@ -2,11 +2,11 @@ package com.basejava.webapp.model;
 
 import java.util.Objects;
 
-public class ContentSection extends Section{
+public class TextSection extends Section{
 
     private final String content;
 
-    public ContentSection(String content) {
+    public TextSection(String content) {
         this.content = content;
     }
 
@@ -18,7 +18,7 @@ public class ContentSection extends Section{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ContentSection that = (ContentSection) o;
+        TextSection that = (TextSection) o;
         return Objects.equals(content, that.content);
     }
 
